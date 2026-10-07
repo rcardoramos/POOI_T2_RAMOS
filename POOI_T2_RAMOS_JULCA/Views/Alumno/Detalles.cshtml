@@ -1,0 +1,50 @@
+﻿@model POOI_T2_RAMOS_JULCA.Models.Alumno
+
+@{
+    ViewBag.Title = "Detalles del Alumno";
+}
+
+<h2>Detalles del Alumno</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>DNI</th>
+        <td>@Model.dni</td>
+    </tr>
+
+    <tr>
+        <th>Nombres</th>
+        <td>@Model.nombres</td>
+    </tr>
+
+    <tr>
+        <th>Apellidos</th>
+        <td>@Model.apellidos</td>
+    </tr>
+
+    <tr>
+        <th>Carrera</th>
+        <td>@Model.carrera</td>
+    </tr>
+
+    <tr>
+        <th>Ciclo</th>
+        <td>@Model.ciclo</td>
+    </tr>
+
+</table>
+
+@Html.ActionLink(
+    "Actualizar",
+    "Actualizar",
+    new { dni = Model.dni },
+    new { @class = "btn btn-warning" }
+)
+
+@Html.ActionLink(
+    "Regresar",
+    "Index",
+    null,
+    new { @class = "btn btn-default" }
+)

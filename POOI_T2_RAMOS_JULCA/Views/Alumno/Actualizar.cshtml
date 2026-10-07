@@ -1,0 +1,103 @@
+﻿@model POOI_T2_RAMOS_JULCA.Models.Alumno
+
+@{
+    ViewBag.Title = "Actualizar Alumno";
+}
+
+<h2>Actualizar Alumno</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Mensaje
+    </div>
+}
+
+@using (Html.BeginForm("Actualizar", "Alumno", FormMethod.Post))
+{
+    <input type="hidden"
+           name="dniOriginal"
+           value="@Model.dni" />
+
+    <div class="form-group">
+        <label>DNI</label>
+
+        @Html.TextBoxFor(
+            model => model.dni,
+            new
+            {
+                @class = "form-control",
+                required = "required"
+            }
+        )
+    </div>
+
+    <div class="form-group">
+        <label>Nombres</label>
+
+        @Html.TextBoxFor(
+            model => model.nombres,
+            new
+            {
+                @class = "form-control",
+                required = "required"
+            }
+        )
+    </div>
+
+    <div class="form-group">
+        <label>Apellidos</label>
+
+        @Html.TextBoxFor(
+            model => model.apellidos,
+            new
+            {
+                @class = "form-control",
+                required = "required"
+            }
+        )
+    </div>
+
+    <div class="form-group">
+        <label>Carrera</label>
+
+        @Html.TextBoxFor(
+            model => model.carrera,
+            new
+            {
+                @class = "form-control",
+                required = "required"
+            }
+        )
+    </div>
+
+    <div class="form-group">
+        <label>Ciclo</label>
+
+        @Html.TextBoxFor(
+            model => model.ciclo,
+            new
+            {
+                @class = "form-control",
+                type = "number",
+                min = "1",
+                required = "required"
+            }
+        )
+    </div>
+
+    <br />
+
+    <button type="submit"
+            class="btn btn-warning">
+        Actualizar
+    </button>
+
+    @Html.ActionLink(
+        "Regresar",
+        "Index",
+        "Alumno",
+        null,
+        new { @class = "btn btn-default" }
+    )
+}

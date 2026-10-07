@@ -1,0 +1,100 @@
+﻿@using System.Linq
+@model IEnumerable<POOI_T2_RAMOS_JULCA.Models.Alumno>
+
+@{
+    ViewBag.Title = "Lista de Alumnos";
+}
+
+<h2>Lista de Alumnos</h2>
+
+<p>
+    @Html.ActionLink(
+        "Agregar Alumno",
+        "Agregar",
+        "Alumno",
+        null,
+        new { @class = "btn btn-primary" }
+    )
+</p>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div id="mensaje" class="alert alert-success">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Carrera</th>
+            <th>Ciclo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var alumno in Model)
+            {
+                <tr>
+                    <td>@alumno.dni</td>
+                    <td>@alumno.nombres</td>
+                    <td>@alumno.apellidos</td>
+                    <td>@alumno.carrera</td>
+                    <td>@alumno.ciclo</td>
+                    <td>
+
+                        @Html.ActionLink(
+                            "Detalles",
+                            "Detalles",
+                            new { dni = alumno.dni },
+                            new { @class = "btn btn-info btn-sm" }
+                        )
+
+                        @Html.ActionLink(
+                            "Actualizar",
+                            "Actualizar",
+                            new { dni = alumno.dni },
+                            new { @class = "btn btn-warning btn-sm" }
+                        )
+
+                        @Html.ActionLink(
+                            "Eliminar",
+                            "Eliminar",
+                            new { dni = alumno.dni },
+                            new
+                            {
+                                @class = "btn btn-danger btn-sm",
+                                onclick = "return confirm('¿Desea eliminar este alumno?');"
+                            }
+                        )
+
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">
+                    No existen alumnos registrados.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    setTimeout(function () {
+        var mensaje = document.getElementById("mensaje");
+
+        if (mensaje) {
+            mensaje.style.display = "none";
+        }
+    }, 5000);
+</script>
